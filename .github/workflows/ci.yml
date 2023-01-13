@@ -71,7 +71,7 @@ jobs:
   push:
     name: Push image to registry
     runs-on: ubuntu-22.04
-    needs: itest
+    needs: build
     steps:
       - name: Download image
         uses: actions/download-artifact@v3
