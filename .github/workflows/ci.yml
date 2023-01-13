@@ -23,10 +23,13 @@ jobs:
           . ./conf.sh
           echo "IMAGE=${IMAGE}" >> $GITHUB_ENV
           echo "IMAGE=${IMAGE}"
+      - name: Download and install Spark binaries
+        run: |
+          ./prereq-install.sh
       - name: Build spark-py image for k8s
         run: |
           ./build.sh
-      - name: Export fink-alert-simulator image
+      - name: Export image
         run: |
           docker images
           echo "${{ env.IMAGE }}"
