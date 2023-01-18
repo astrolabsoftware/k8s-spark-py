@@ -17,6 +17,9 @@ export PATH="$SPARK_HOME/bin:$PATH"
 
 # Build parameters
 # ----------------
+# Java base image
+# TODO test "11-jre-slim" which is not more based on alpine and might work
+readonly JAVA_IMAGE_TAG="11-jre"
 # Repository address
 readonly REPO="gitlab-registry.in2p3.fr/astrolabsoftware/fink"
 # Tag to apply to the built image, or to identify the image to be pushed

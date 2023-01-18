@@ -28,4 +28,4 @@ DIR=$(cd "$(dirname "$0")"; pwd -P)
 
 # Based on https://spark.apache.org/docs/latest/running-on-kubernetes.html#docker-images
 cd $SPARK_HOME
-$SPARK_HOME/bin/docker-image-tool.sh -r "$REPO" -t "$IMAGE_TAG" -p ./kubernetes/dockerfiles/spark/bindings/python/Dockerfile build
+$SPARK_HOME/bin/docker-image-tool.sh -r "$REPO" -t "$IMAGE_TAG" -p ./kubernetes/dockerfiles/spark/bindings/python/Dockerfile -b java_image_tag="$JAVA_IMAGE_TAG" build
