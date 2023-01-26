@@ -1,0 +1,39 @@
+# k8s-spark-py
+
+Build spark-py image for Kubernetes
+
+# Pre-requisites
+
+```shell
+# Retrieve the code
+git clone https://github.com/astrolabsoftware/k8s-spark-py
+cd k8s-spark-py
+```
+
+Eventually edit `conf.sh` to fine-tune the configuration
+
+```
+# Download and unzip Spark binaries 
+./prereq-install.sh
+```
+
+# Build spark-py image for k8s
+
+```shell
+./build.sh
+```
+
+# Push image to IN2P3 registry
+
+```shell
+# Log in IN2P3 registry
+docker login gitlab-registry.in2p3.fr 
+./push-image.sh
+```
+
+# Customize image
+
+The goal is to remain closest from the standard build documented here:
+https://spark.apache.org/docs/latest/running-on-kubernetes.html#docker-images
+
+However, it is possible to customize the build by adding files inside the `custom/` directory. This file will be copied to SPARK_HOME just before building the container images. Currenly `avro`, `hbase` and `kafka` java libraries are added.
