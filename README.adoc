@@ -13,7 +13,7 @@ cd k8s-spark-py
 Eventually edit `conf.sh` to fine-tune the configuration
 
 ```
-# Download and unzip Spark binaries 
+# Download and unzip Spark binaries
 ./prereq-install.sh
 ```
 
@@ -27,7 +27,7 @@ Eventually edit `conf.sh` to fine-tune the configuration
 
 ```shell
 # Log in IN2P3 registry
-docker login gitlab-registry.in2p3.fr 
+docker login gitlab-registry.in2p3.fr
 ./push-image.sh
 ```
 
@@ -36,4 +36,8 @@ docker login gitlab-registry.in2p3.fr
 The goal is to remain closest from the standard build documented here:
 https://spark.apache.org/docs/latest/running-on-kubernetes.html#docker-images
 
-However, it is possible to customize the build by adding files inside the `custom/` directory. This file will be copied to SPARK_HOME just before building the container images. Currenly `avro`, `hbase` and `kafka` java libraries are added.
+However, it is possible to customize the build by adding files inside the `custom/` directory. This file will be copied to SPARK_HOME just before building the container images. Currenly `avro`, `hbase` and `kafka` java libraries are added in order to support https://github.com/astrolabsoftware/fink-broker[fink-broker].
+
+# Automated build
+
+The CI will automatically build and push `spark-py` container image inside IN2P3 registry for each commit to the git repository.
