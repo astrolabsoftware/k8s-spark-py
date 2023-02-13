@@ -28,7 +28,10 @@ DIR=$(cd "$(dirname "$0")"; pwd -P)
 
 # Add custom files
 echo "Add custom files to Spark"
-cp -rT $DIR/custom $SPARK_HOME
+
+if [ -d $DIR/custom ]; then
+  cp -rT $DIR/custom $SPARK_HOME
+fi
 
 # Based on https://spark.apache.org/docs/latest/running-on-kubernetes.html#docker-images
 cd $SPARK_HOME
