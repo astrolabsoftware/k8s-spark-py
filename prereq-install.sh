@@ -35,7 +35,3 @@ then
   curl -L "https://archive.apache.org/dist/spark/spark-${SPARK_VERSION}/${SPARK_ARCHIVE}" -o "${SPARK_INSTALL_DIR}/${SPARK_ARCHIVE}"
   tar -C "$SPARK_INSTALL_DIR" -xf "${SPARK_INSTALL_DIR}/${SPARK_ARCHIVE}"
 fi
-
-# Add custom files
-echo "Add custom files to Spark"
-cp -rT $DIR/custom $SPARK_HOME

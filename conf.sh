@@ -3,7 +3,7 @@
 # Assuming Scala 2.11
 
 # Spark version
-readonly SPARK_VERSION="3.1.3"
+readonly SPARK_VERSION="3.2.3"
 
 # Name for the Spark archive
 readonly SPARK_NAME="spark-${SPARK_VERSION}-bin-hadoop3.2"
