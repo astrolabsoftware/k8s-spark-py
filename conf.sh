@@ -3,10 +3,10 @@
 # Assuming Scala 2.11
 
 # Spark version
-readonly SPARK_VERSION="3.1.3"
+readonly SPARK_VERSION="3.4.1"
 
 # Name for the Spark archive
-readonly SPARK_NAME="spark-${SPARK_VERSION}-bin-hadoop3.2"
+readonly SPARK_NAME="spark-${SPARK_VERSION}-bin-hadoop3"
 
 # Spark install location
 readonly SPARK_INSTALL_DIR="${HOME}/fink-k8s-tmp"
