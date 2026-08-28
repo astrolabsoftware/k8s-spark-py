@@ -3,7 +3,7 @@
 # Assuming Scala 2.11
 
 # Spark version
-readonly SPARK_VERSION="3.4.1"
+readonly SPARK_VERSION="4.2.0"
 
 # Name for the Spark archive
 readonly SPARK_NAME="spark-${SPARK_VERSION}-bin-hadoop3"
@@ -19,7 +19,7 @@ export PATH="$SPARK_HOME/bin:$PATH"
 # ----------------
 # Java base image
 # TODO test "11-jre-slim" which is not more based on alpine and might work
-readonly JAVA_IMAGE_TAG="11-jre"
+readonly JAVA_IMAGE_TAG="17-jre"
 # Repository address
 readonly REPO="gitlab-registry.in2p3.fr/astrolabsoftware/fink"
 # Tag to apply to the built image, or to identify the image to be pushed
