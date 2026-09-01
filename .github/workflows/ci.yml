@@ -12,7 +12,7 @@ jobs:
     runs-on: ubuntu-22.04
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
         with:
           fetch-depth: 0
       - name: Declare Variables
@@ -36,7 +36,7 @@ jobs:
           mkdir -p artifacts
           docker save "${{ env.IMAGE }}" > artifacts/image.tar
           echo "${{ env.IMAGE }}" > artifacts/image-tag
-      - uses: actions/upload-artifact@v2
+      - uses: actions/upload-artifact@v4
         with:
           name: docker-artifact
           path: artifacts
@@ -48,9 +48,9 @@ jobs:
     needs: build
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
       - name: Download image
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v4
         with:
           name: docker-artifact
           path: artifacts
@@ -59,7 +59,7 @@ jobs:
           docker load --input artifacts/image.tar
           echo "IMAGE=$(cat artifacts/artifacts/image-tag)" >> $GITHUB_ENV
       - name: Scan Fink image
-        uses: anchore/scan-action@v3
+        uses: anchore/scan-action@v6
         id: scan
         with:
           image: "${{ env.IMAGE }}"
@@ -68,7 +68,7 @@ jobs:
         run: |
           cat ${{ steps.scan.outputs.sarif }}
       - name: upload Anchore scan SARIF report
-        uses: github/codeql-action/upload-sarif@v2
+        uses: github/codeql-action/upload-sarif@v3
         with:
           sarif_file: ${{ steps.scan.outputs.sarif }}
   push:
@@ -77,7 +77,7 @@ jobs:
     needs: build
     steps:
       - name: Download image
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v4
         with:
           name: docker-artifact
           path: artifacts

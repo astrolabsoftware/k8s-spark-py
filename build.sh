@@ -28,4 +28,9 @@ DIR=$(cd "$(dirname "$0")"; pwd -P)
 
 # Based on https://spark.apache.org/docs/latest/running-on-kubernetes.html#docker-images
 cd $SPARK_HOME
+
+# workaround as Spark 3.5.x has a buggy k8s file requiring 
+# installing python packages using the system python...
+# This problem was fixed for Spark 4.x
+curl 'https://raw.githubusercontent.com/apache/spark/refs/heads/master/resource-managers/kubernetes/docker/src/main/dockerfiles/spark/bindings/python/Dockerfile' -o $SPARK_HOME/kubernetes/dockerfiles/spark/bindings/python/Dockerfile
 $SPARK_HOME/bin/docker-image-tool.sh -r "$REPO" -t "$IMAGE_TAG" -p ./kubernetes/dockerfiles/spark/bindings/python/Dockerfile -b java_image_tag="$JAVA_IMAGE_TAG" build
